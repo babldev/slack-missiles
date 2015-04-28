@@ -93,10 +93,10 @@ def run_command(command, value):
         if value < 1 or value > 4:
             value = 1
         shoot(value)
-    elif command == 'multikill':
-        multikill()
     else:
-        print "Error: Unknown command: '%s'" % command
+        return False
+
+    return True
 
 
 def run_command_set(command, shoot=1):
@@ -142,8 +142,10 @@ def slack():
     if len(args) >= 2:
         duration = float(args[1])
 
-    run_command(cmd, duration)
-    return 'RUNNING {} {}'.format(cmd, duration)
+    if run_command(cmd, duration):
+        return 'RUNNING {} {}'.format(cmd, duration)
+    else:
+        return 'UNKNOWN COMMAND'
 
 
 if __name__ == '__main__':
