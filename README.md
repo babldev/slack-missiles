@@ -1,10 +1,10 @@
 # Slack Missile Launcher
 
-Fire missiles at your enemies using the [Dream Cheeky missile launcher](http://dreamcheeky.com/thunder-missile-launcher) and Slack! For example `/shoot ben`.
+Fire missiles at your enemies via Slack! For example `/shoot ben`.
 
 <img alt="Launcher Gif" src="https://raw.githubusercontent.com/babldev/slack-missiles/master/launcher.gif" width="240" height="240">
 
-Based on code by https://github.com/codedance/Retaliation
+Requires the [Dream Cheeky missile launcher](http://dreamcheeky.com/thunder-missile-launcher) and Slack!
 
 ## Setup
 
@@ -38,4 +38,6 @@ The format is [X, Y], declaring how much the device moves right and then up befo
 
 ## Notes
 
-This is super hacky right now, but it works.
+Based on code by https://github.com/codedance/Retaliation
+
+The code is super hacky right now, but it works.
