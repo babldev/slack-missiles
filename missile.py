@@ -8,8 +8,11 @@ import time
 import urllib2
 
 from flask import Flask, request
+import requests
 import usb.core
 import usb.util
+
+import settings
 
 
 # Protocol command bytes
@@ -115,6 +118,19 @@ def run_command_set(command, shoot=1):
     run_command('left', command[0] + 1000)
 
 
+def alert_launch(sender, target):
+    message = '@{target}: MISSILE LAUNCH DETECTED! Sent from @{sender}'.format(
+        target=target,
+        sender=sender,
+    )
+    url = 'https://lyft.slack.com/services/hooks/slackbot?token={token}&channel=%23{room}'.format(
+        token=settings.SLACKBOT_REMOTE_CONTROL_TOKEN,
+        room=settings.SLACKBOT_REMOTE_CONTROL_ROOM,
+    )
+    print url
+    data = requests.post(url, data=message)
+
+
 app = Flask(__name__)
 
 
@@ -122,11 +138,8 @@ app = Flask(__name__)
 def slack():
     setup_usb()
 
-    targets = {}
-    with open('targets.json', 'r') as f:
-        targets = json.loads(f.read())
-
     text = request.form['text'].lower()
+    sender = request.form['user_name'].lower()
     args = text.split(' ')
 
     # strip the '@' from the command if it is the first char.
@@ -134,9 +147,10 @@ def slack():
     if len(cmd) > 2 and cmd[0] == '@':
         cmd = cmd[1:]
 
-    if cmd in targets:
-        run_command_set(targets[cmd])
-        return 'TARGET ACQUIRED: {}!'.format(cmd)
+    if cmd in settings.TARGETS:
+        alert_launch(sender=sender, target=cmd)
+        run_command_set(settings.TARGETS[cmd])
+        return 'TARGET ACQUIRED: @{}!'.format(cmd)
 
     duration = 0
     if len(args) >= 2:

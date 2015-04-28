@@ -13,7 +13,7 @@ Requires the [Dream Cheeky missile launcher](http://dreamcheeky.com/thunder-miss
 This server will receive commands from Slack.
 
 ```
-cp targets_sample.json targets.json
+cp settings_sample.py settings.py
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -32,9 +32,9 @@ Add a [Slack command hook](https://api.slack.com/slash-commands) and point it to
 
 Does `/shoot right 1000` move the device for 1 second?
 
-### Calibrate targets.json to your liking
+### Update settings.py
 
-The format is [X, Y], declaring how much the device moves right and then up before shooting.
+The format is [X, Y], declaring how much the device moves right and then up before shooting. Add a slackbot remote control command if you'd like to have launch alerts.
 
 ## Notes
 
