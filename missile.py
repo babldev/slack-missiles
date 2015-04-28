@@ -128,7 +128,11 @@ def slack():
 
     text = request.form['text'].lower()
     args = text.split(' ')
+
+    # strip the '@' from the command if it is the first char.
     cmd = args[0]
+    if len(cmd) > 2 and cmd[0] == '@':
+        cmd = cmd[1:]
 
     if cmd in targets:
         run_command_set(targets[cmd])
