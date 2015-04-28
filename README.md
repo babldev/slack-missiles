@@ -2,7 +2,7 @@
 
 Fire missiles at your enemies using the [Dream Cheeky missile launcher](http://dreamcheeky.com/thunder-missile-launcher) and Slack! For example `/shoot ben`.
 
-![Launcher Gif](launcher.gif)
+<img alt="Launcher Gif" src="https://raw.githubusercontent.com/babldev/slack-missiles/master/launcher.gif" width="240" height="240">
 
 Based on code by https://github.com/codedance/Retaliation
 
