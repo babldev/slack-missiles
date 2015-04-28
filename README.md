@@ -15,8 +15,8 @@ This server will receive commands from Slack.
 ```
 cp targets_sample.json targets.json
 virtualenv venv
-pip install -r requirements.txt
 source venv/bin/activate
+pip install -r requirements.txt
 python missile.py
 ```
 
