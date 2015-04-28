@@ -6,6 +6,8 @@ Based on code by https://github.com/codedance/Retaliation
 
 ## Setup
 
+### Run the webserver on a machine with the launcher device attached.
+
 You need to run a webserver that you can make Slack command hook too.
 
 ```
@@ -16,7 +18,21 @@ source venv/bin/activate
 python missile.py
 ```
 
-Then create the command hook and point it to http://yourserver.com/slack
+### Expose the webserver to the public.
+
+One quick and dirty way to do this is with [ngrok](https://ngrok.com/)
+
+### Add the Slack command hook
+
+Add a [Slack command hook](https://api.slack.com/slash-commands) and point it to your webserver: http://yourserver.com/slack
+
+### Test the connection!
+
+Does `/shoot right 1000` move the device for 1 second?
+
+### Update targets.json to your liking.
+
+The format is [X, Y], declaring how much the device moves right and then up before shooting.
 
 ## Notes
 
